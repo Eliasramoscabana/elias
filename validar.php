@@ -1,28 +1,24 @@
 <?php
 session_start();
+include_once('conexion.php');
 
-$con=pg_connect("host=127.0.0.1 port=5432 user=postgres password=123456 dbname=siam_siar");
-if(!$con)
-{
-echo "Conexion no establecida, verifique sus datos";
-}
 
 $usuario=$_POST["usuario"];
 $pass=$_POST["password"];
 
-$SQL="SELECT usuario, contrasena FROM comparacion WHERE usuario='$usuario' and contrasena='$pass'";
+$SQL="SELECT cidusuario, cpassword FROM usuarios WHERE cidusuario='$usuario' and cpassword='$pass'";
 $busqueda=pg_query($SQL);
 $compara=pg_fetch_array($busqueda);
 
-if ($compara["usuario"]==$usuario && $compara["contrasena"]==$pass)
+if ($compara["cidusuario"]==$usuario && $compara["cpassword"]==$pass)
 {
 $_SESSION['usuario'] = $usuario;
 $_SESSION['pass'] = $pass;
-header ('Location: curso/nihongo_aragon.php?modulo=inicio');
+header ('Location: yes.html');
 }
 
 else
 {
-header ('Location: logerror.php');
+header ('Location: index.html');
 }
 ?>
