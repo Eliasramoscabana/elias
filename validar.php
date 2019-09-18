@@ -1,24 +1,26 @@
-<?php
+<?php 
 session_start();
 include_once('conexion.php');
 
 
 $usuario=$_POST["usuario"];
-$pass=$_POST["password"];
+$password=$_POST["password"];
 
-$SQL="SELECT cidusuario, cpassword FROM usuarios WHERE cidusuario='$usuario' and cpassword='$pass'";
-$busqueda=pg_query($SQL);
-$compara=pg_fetch_array($busqueda);
+$sql="SELECT cidusuario, cpassword FROM siam_siar.usuarios WHERE cidusuario='$usuario' and cpassword='$password'";
+$resultado=pg_query($sql);
+$compara=pg_fetch_array($resultado);
 
-if ($compara["cidusuario"]==$usuario && $compara["cpassword"]==$pass)
+if ($compara>0)
 {
 $_SESSION['usuario'] = $usuario;
-$_SESSION['pass'] = $pass;
+echo '<script>alert("ingreso correctamente")</script> ';
 header ('Location: yes.html');
+
 }
 
 else
 {
+echo '<script>alert("ERROR")</script> ';
 header ('Location: index.html');
 }
 ?>
