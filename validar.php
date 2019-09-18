@@ -7,13 +7,13 @@ $usuario=$_POST["usuario"];
 $pass=$_POST["password"];
 
 $SQL="SELECT cidusuario, cpassword FROM usuarios WHERE cidusuario='$usuario' and cpassword='$pass'";
-$busqueda=pg_query($SQL);
+$busqueda=pg_query($SQL,$con);
 $compara=pg_fetch_array($busqueda);
 
 if ($compara["cidusuario"]==$usuario && $compara["cpassword"]==$pass)
 {
-$_SESSION['usuario'] = $usuario;
-$_SESSION['pass'] = $pass;
+$_SESSION['usuario'] = $cidusuario;
+$_SESSION['pass'] = $cpassword;
 header ('Location: yes.html');
 }
 
