@@ -1,9 +1,9 @@
-<?php 
+ <?php 
 session_start();
 include_once('conexion.php');
 
 
-$usuario=$_POST["usuario"];
+$usuario=$_POST["usuario"]; 
 $password=$_POST["password"];
 
 $sql="SELECT cidusuario, cpassword FROM siam_siar.usuarios WHERE cidusuario='$usuario' and cpassword='$password'";
