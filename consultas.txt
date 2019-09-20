@@ -1,0 +1,12 @@
+﻿select * from ppto.ejecutora where ide_eje = 1
+select * from ppto.ejecutora where ruc_eje = '20172681043'
+
+select * from ppto.vw_ejecutora where ruc_eje = '20172681043'
+
+
+select * from siam.grupos where ide_eje = 656
+
+select * from siam.usuarios where ide_gru in (select ide_gru from siam.grupos where ide_eje = 656) order by 3
+
+
+http://35.231.103.64:3006/login
